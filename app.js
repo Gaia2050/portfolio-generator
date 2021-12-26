@@ -41,9 +41,22 @@ const promptUser = () => {
             }
         },
         {
+            type: 'confirm',
+            name: 'confirmAbout',
+            message: 'WOuld you like to provide some information about yourself for an "About Section?',
+            default: true
+        },
+        {
             type: 'input',
             name: 'about',
-            message: 'Provide some information about yourself:'
+            message: 'Provide some information about yourself:',
+            when: ({confirmAbout}) => {   //The inquirer method automatically passes an object containing the user's answers to the when function. This allows us to write conditional code based on the answers the user has supplied thus far.
+                if (confirmAbout) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
     ]);
 };
